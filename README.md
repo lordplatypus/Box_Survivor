@@ -7,7 +7,7 @@ git clone https://github.com/lordplatypus/Box_Survivor.git
 ```
 - Move to the source
 ```
-cd ./Rhythm_Game_Remake
+cd ./Box_Survivor
 ```
 - Make a build directory and move to it
 ```

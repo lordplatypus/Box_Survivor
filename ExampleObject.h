@@ -2,6 +2,7 @@
 #define EXAMPLE_OBJECT_H_
 #include "GameObject.h"
 #include "LP.h"
+#include "IP.h"
 
 class ExampleObject : public GameObject
 {
@@ -13,11 +14,14 @@ public:
     void DelayedDraw(Camera& camera) const override;
 
 private:
+    void InputHandle(float delta_time);
     //Collision / Perception
     void ReactOnCollision(GameObject& other) override;
 
 private:
+    IP IP_;
     sf::RectangleShape rect_;
+    const float speed{100.0f};
 };
 
 #endif
