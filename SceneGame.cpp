@@ -1,6 +1,7 @@
 #include "SceneGame.h"
 #include "LP.h"
 #include "ID.h"
+#include "ExampleObject.h"
 
 SceneGame::SceneGame(Game* game) : game_{game}
 {}
@@ -11,6 +12,8 @@ SceneGame::~SceneGame()
 void SceneGame::Init()
 {
     //AddGameObject(new Object(position, &pm_, this)); Example
+    AddGameObject(new ExampleObject(*this, sf::Vector2f(0.0f, 0.0f)));
+    game_->GetCamera().SetViewCenter(view_main, sf::Vector2f(0, 0));
 }
 
 void SceneGame::Update(float delta_time)

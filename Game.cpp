@@ -6,8 +6,9 @@
 
 static SceneNull nullScene;
 
-Game::Game() : scene_{&nullScene}
+Game::Game(Camera& camera) : scene_{&nullScene}
 {
+    camera_ = &camera;
     LP_.Load();
     MP_.Load();
 
@@ -58,6 +59,11 @@ LP& Game::GetLP()
 MP& Game::GetMP()
 {
     return MP_;
+}
+
+Camera& Game::GetCamera()
+{
+    return *camera_;
 }
 
 void Game::Clear()

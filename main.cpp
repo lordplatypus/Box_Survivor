@@ -21,7 +21,7 @@ int main()
 
     EL EL{camera}; //Setup the Event Listener
 
-    Game game{}; //Setup the Game
+    Game game{camera}; //Setup the Game
 
     while (EL.IsRunning())
     {//main game loop

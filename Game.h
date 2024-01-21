@@ -9,7 +9,7 @@
 class Game
 {
 public:
-    Game();
+    Game(Camera& camera);
     ~Game();
     //Update Game
     void Update(float delta_time);
@@ -24,6 +24,7 @@ public:
 
     LP& GetLP();
     MP& GetMP();
+    Camera& GetCamera();
 
     //Called on program shutdown, delete scenes here
     void Clear();
@@ -39,6 +40,7 @@ private:
     //Load Assets
     LP LP_;
     MP MP_;
+    Camera* camera_ {nullptr};
 };
 
 #endif

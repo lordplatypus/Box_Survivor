@@ -1,7 +1,7 @@
 #include "ExampleObject.h"
 #include "ID.h"
 
-ExampleObject::ExampleObject(Scene& scene, LP& LP, const sf::Vector2f& position)
+ExampleObject::ExampleObject(Scene& scene, const sf::Vector2f& position)
 {
     scene_ = &scene;
     name_ = "ExampleObject";
@@ -9,6 +9,16 @@ ExampleObject::ExampleObject(Scene& scene, LP& LP, const sf::Vector2f& position)
     position_ = position;
     layerID_ = layer_main;
     ID_ = 0;
+    imageWidth_ = 16;
+    imageHeight_ = 16;
+
+    // sf::RectangleShape test(sf::Vector2f(imageWidth_, imageHeight_));
+    // // rect_.setSize(sf::Vector2f(imageWidth_, imageHeight_));
+    // rect_ = test;
+    // rect_ = sf::RectangleShape(sf::Vector2f(16, 16));
+    rect_.setSize(sf::Vector2f(16, 16));
+    rect_.setFillColor(sf::Color(255, 255, 255, 255));
+    rect_.setPosition(position_);
 
     //Sprite set up
     //sprite_ = LP.SetSprite(pic_texture, position_);
@@ -26,6 +36,7 @@ void ExampleObject::Draw(Camera& camera) const
 {
     //Draw sprite to layer
     //camera.Draw(sprite_, layer_main);
+    camera.Draw(rect_, layer_main);
 }
 
 void ExampleObject::DelayedDraw(Camera& camera) const
