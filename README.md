@@ -25,10 +25,6 @@ cmake -DCMAKE_BUILD_TYPE=Debug ..
 ```
 make
 ```
-- Move the "Resources" folder from the source files to the build folder
-```
-mv ../Resources ./
-```
 - Run the Game
 ```
 ./Game
