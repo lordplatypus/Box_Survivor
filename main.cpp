@@ -12,9 +12,10 @@ int main()
 
     DeltaTime deltaTime;
 
-    Camera camera(&render_window, sf::Vector2f(1920.0f, 1080.0f));
+    Camera camera(&render_window, sf::Vector2f(1440.0f, 810.0f));
     camera.AddView(view_main); //add the main view
     camera.AddView(view_UI); //add the UI view
+    camera.AddLayer(layer_tilemap); //add the tilemap layer
     camera.AddLayer(layer_main); //add the main layer
     camera.AddLayer(layer_particle); //add the particle layer
     camera.AddLayer(layer_UI); //add the UI layer

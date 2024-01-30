@@ -1,20 +1,26 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Game.h"
+#include "ID.h"
 #include "SceneNull.h"
 #include "SceneGame.h"
+#include "SceneTitle.h"
 
 static SceneNull nullScene;
 
 Game::Game(Camera& camera) : scene_{&nullScene}
 {
+    //Set camera
     camera_ = &camera;
+    //Load textures
     LP_.Load();
+    //Load music
     MP_.Load();
-
+    //Add scenes
+    AddScene("Title", new SceneTitle(this));
     AddScene("Game", new SceneGame(this));
-
-    scene_ = scenes_["Game"];
+    //Set starting scene
+    scene_ = scenes_["Title"];
     scene_->Init();
 }
 

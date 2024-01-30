@@ -6,6 +6,7 @@
 //Textures
 enum
 {
+    tileset_texture,
     pic_texture,
 };
 
