@@ -5,6 +5,7 @@
 #include "LP.h"
 #include "MP.h"
 #include "Camera.h"
+#include "PlayerStats.h"
 
 class Game
 {
@@ -25,6 +26,7 @@ public:
     LP& GetLP();
     MP& GetMP();
     Camera& GetCamera();
+    PlayerStats& GetPlayerStats();
 
     //Called on program shutdown, delete scenes here
     void Clear();
@@ -41,6 +43,7 @@ private:
     LP LP_;
     MP MP_;
     Camera* camera_ {nullptr};
+    PlayerStats ps_;
 };
 
 #endif

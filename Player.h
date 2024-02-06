@@ -4,11 +4,12 @@
 #include "LP.h"
 #include "IP.h"
 #include "Map.h"
+#include "PlayerStats.h"
 
 class Player : public GameObject
 {
 public:
-    Player(Scene& scene, Camera& camera, Map& map, const sf::Vector2f& position);
+    Player(Scene& scene, Camera& camera, Map& map, PlayerStats& ps, const sf::Vector2f& position);
     ~Player() override;
     void Update(float delta_time) override;
     void Draw(Camera& camera) const override;
@@ -24,7 +25,8 @@ private:
     IP IP_;
     sf::RectangleShape rect_;
     const float speed{100.0f};
-    Map* map_;
+    Map* map_{nullptr};
+    PlayerStats* ps_{nullptr};
 };
 
 #endif

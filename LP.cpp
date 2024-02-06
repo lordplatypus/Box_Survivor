@@ -13,6 +13,7 @@ void LP::LoadTexture()
 {
     // SetTexture(Texture Key, "Path to texture", Optional: size of texture);
     SetTexture(tileset_texture, "./Tileset.png", 32, 32);
+    SetTexture(heart_texture, "./Heart.png", 16, 8);
 }
 
 void LP::LoadFont()

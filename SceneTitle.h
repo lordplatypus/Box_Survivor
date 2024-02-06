@@ -5,6 +5,7 @@
 #include "GameObjectManager.h"
 #include "ParticleManager.h"
 #include "MapTitle.h"
+#include "PlayerManager.h"
 
 
 class SceneTitle : public Scene
@@ -27,6 +28,7 @@ private:
     MapTitle* mt_{nullptr};
     bool changeSceneFlag_{false};
     std::string sceneName_;
+    PlayerManager* playerManager_{nullptr};
 };
 
 #endif

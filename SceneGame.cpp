@@ -3,6 +3,8 @@
 #include "ID.h"
 #include "ExampleObject.h"
 #include "Player.h"
+#include "UIHP.h"
+#include "UIExp.h"
 #include "Staircase.h"
 #include "MapNull.h"
 
@@ -15,10 +17,18 @@ SceneGame::~SceneGame()
 void SceneGame::Init()
 {
     //AddGameObject(new Object(position, &pm_, this)); Example
-    AddGameObject(new ExampleObject(*this, sf::Vector2f(0.0f, -100.0f)));
+    
     MapNull* nullMap = new MapNull();
-    AddGameObject(new Player(*this, game_->GetCamera(), *nullMap, sf::Vector2f(0.0f, 0.0f)));
+    Player* player = new Player(*this, game_->GetCamera(), *nullMap, game_->GetPlayerStats(), sf::Vector2f(45 / 2 * 32, 25 / 2 * 32));
+    UIHP* player_hp_ui = new UIHP(game_->GetPlayerStats().GetMaxHP(), game_->GetPlayerStats().GetHP(), sf::Vector2f(32, game_->GetCamera().GetView(view_UI).getSize().y - 64));
+    UIExp* player_exp_ui = new UIExp(game_->GetPlayerStats().GetMaxExperience(), game_->GetPlayerStats().GetExperience(), sf::Vector2f(game_->GetCamera().GetView(view_UI).getSize().x - 320 - 32, game_->GetCamera().GetView(view_UI).getSize().y - 64));
+    playerManager_ = new PlayerManager(game_->GetPlayerStats(), *player, *player_hp_ui, *player_exp_ui);
+
+    AddGameObject(player);
+    AddGameObject(player_hp_ui);
+    AddGameObject(player_exp_ui);
     AddGameObject(new Staircase(*this, sf::Vector2f(45 / 2 * 32, 5 * 32), "Title"));
+    AddGameObject(new ExampleObject(*this, *playerManager_, sf::Vector2f(0.0f, -100.0f)));
     game_->GetCamera().SetViewCenter(view_main, sf::Vector2f(0, 0));
 }
 

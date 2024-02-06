@@ -7,7 +7,7 @@
 enum
 {
     tileset_texture,
-    pic_texture,
+    heart_texture,
 };
 
 //Font

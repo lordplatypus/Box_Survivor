@@ -1,9 +1,10 @@
 #include "ExampleObject.h"
 #include "ID.h"
 
-ExampleObject::ExampleObject(Scene& scene, const sf::Vector2f& position)
+ExampleObject::ExampleObject(Scene& scene, PlayerManager& player_manager, const sf::Vector2f& position)
 {
     scene_ = &scene;
+    player_manager_ = &player_manager;
     name_ = "ExampleObject";
     tag_ = "Example";
     position_ = position;
@@ -51,6 +52,12 @@ void ExampleObject::ReactOnCollision(GameObject& other)
 
     if (other.GetName() == "Player")
     {
+        player_manager_->DealDamage(1);
+        Kill();
+    }
+    else if (other.GetName() == "Player_Bullet")
+    {
+        player_manager_->AddExperience(1);
         Kill();
     }
 }

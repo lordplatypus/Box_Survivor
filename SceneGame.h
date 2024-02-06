@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "GameObjectManager.h"
 #include "ParticleManager.h"
+#include "PlayerManager.h"
 
 class SceneGame : public Scene
 {
@@ -24,6 +25,7 @@ private:
     ParticleManager pm_;
     bool changeSceneFlag_{false};
     std::string sceneName_;
+    PlayerManager* playerManager_{nullptr};
 };
 
 #endif

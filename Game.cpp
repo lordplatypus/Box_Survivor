@@ -16,6 +16,8 @@ Game::Game(Camera& camera) : scene_{&nullScene}
     LP_.Load();
     //Load music
     MP_.Load();
+    //Set player stats
+    ps_.Reset();
     //Add scenes
     AddScene("Title", new SceneTitle(this));
     AddScene("Game", new SceneGame(this));
@@ -70,6 +72,11 @@ MP& Game::GetMP()
 Camera& Game::GetCamera()
 {
     return *camera_;
+}
+
+PlayerStats& Game::GetPlayerStats()
+{
+    return ps_;
 }
 
 void Game::Clear()

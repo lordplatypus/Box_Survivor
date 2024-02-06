@@ -11,7 +11,8 @@ find_package(SFML 2.4 COMPONENTS graphics window system audio REQUIRED)
 
 # list .cpp files
 set(SOURCES main.cpp EL.cpp LP.cpp Game.cpp SceneGame.cpp GameObject.cpp GameObjectManager.cpp MP.cpp IP.cpp Camera.cpp Particle.cpp 
-            ParticleManager.cpp TileMap.cpp ExampleObject.cpp Layer.cpp Player.cpp Map.cpp MapTitle.cpp SceneTitle.cpp Staircase.cpp)
+            ParticleManager.cpp TileMap.cpp ExampleObject.cpp Layer.cpp Player.cpp Map.cpp MapTitle.cpp SceneTitle.cpp Staircase.cpp
+            Bullet.cpp PlayerStats.cpp PlayerManager.cpp UIHP.cpp UIExp.cpp)
 
 # add sub directories
 # add_subdirectory(FolderName)
