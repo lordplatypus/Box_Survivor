@@ -5,6 +5,7 @@
 #include "GameObjectManager.h"
 #include "ParticleManager.h"
 #include "PlayerManager.h"
+#include "MapDungeon.h"
 
 class SceneGame : public Scene
 {
@@ -26,6 +27,7 @@ private:
     bool changeSceneFlag_{false};
     std::string sceneName_;
     PlayerManager* playerManager_{nullptr};
+    MapDungeon* md_{nullptr};
 };
 
 #endif

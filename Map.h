@@ -11,6 +11,8 @@ public:
     Map();
     virtual ~Map();
 
+    // virtual void Init(const sf::Vector2i& map_size, )
+
     virtual void Draw(Camera& camera) const;
     virtual void ResizeMap(const sf::Vector2i& size);
     virtual void SetMapFromCSV(const std::string& CSVFilePath);
@@ -18,7 +20,6 @@ public:
     virtual const bool Transversable(const sf::Vector2f& position) const;
     virtual const int GetTile(const sf::Vector2i& tilePosition) const;
     
-
 protected:
     const int tileSize{32};
     LP* LP_{nullptr};
