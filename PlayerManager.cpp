@@ -1,21 +1,40 @@
 #include "PlayerManager.h"
+#include "ID.h"
+#include "GameOver.h"
 
-PlayerManager::PlayerManager(PlayerStats& ps, Player& player, UIHP& player_hp_ui, UIExp& player_exp_ui)
+PlayerManager::PlayerManager(PlayerStats& ps, Player& player, Scene& scene, Camera& camera, LP& lp)
 {
     ps_ = &ps;
     player_ = &player;
-    player_hp_ui_ = &player_hp_ui;
-    player_exp_ui_ = &player_exp_ui;
+    scene_ = &scene;
+    camera_ = &camera;
+    LP_ = &lp;
+    // player_hp_ui_ = &player_hp_ui;
+    // player_exp_ui_ = &player_exp_ui;
+
+    player_hp_ui_ = new UIHP(ps_->GetMaxHP(), ps_->GetHP(), sf::Vector2f(32, camera.GetView(view_UI).getSize().y - 64));
+    player_exp_ui_ = new UIExp(ps_->GetMaxExperience(), ps_->GetExperience(), sf::Vector2f(camera.GetView(view_UI).getSize().x - 320 - 32, camera.GetView(view_UI).getSize().y - 64));
+    challenge_ui_ = new UIChallenge(lp, sf::Vector2f(64, 64));
+
+    scene_->AddGameObject(player_hp_ui_);
+    scene_->AddGameObject(player_exp_ui_);
+    scene_->AddGameObject(challenge_ui_);
 }
 
 PlayerManager::~PlayerManager() {}
 
-PlayerStats* PlayerManager::GetPlayerStats() {return ps_;}
+PlayerStats* PlayerManager::GetPlayerStats() const {return ps_;}
+
+Player* PlayerManager::GetPlayer() const {return player_;}
 
 void PlayerManager::DealDamage(int damage)
 {
     int new_hp = ps_->GetHP() - damage; // get current hp
-    if (new_hp <= 0) player_->Kill(); // if hp is <= 0 then kill player
+    if (new_hp <= 0) 
+    {// if hp is <= 0 then kill player
+        player_->Kill();
+        scene_->AddGameObject(new GameOver(*scene_, *LP_, camera_->GetView(view_UI).getCenter()));
+    }
     ps_->SetHP(new_hp); // set new hp
     // update player hp ui here
     player_hp_ui_->SetCurrentHP(ps_->GetHP());
@@ -34,4 +53,9 @@ void PlayerManager::AddExperience(int experience)
     // update experience and level UI here
     player_exp_ui_->SetMaxExperience(ps_->GetMaxExperience());
     player_exp_ui_->SetCurrentExperience(ps_->GetExperience());
+}
+
+void PlayerManager::SetChallengeText(const std::string challenge_text)
+{
+    challenge_ui_->SetText(challenge_text);
 }

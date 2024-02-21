@@ -17,6 +17,7 @@ public:
 
 private:
     void InputHandle(float delta_time);
+    bool Transversable(const sf::Vector2f& position) const;
     //Collision / Perception
     void ReactOnCollision(GameObject& other) override;
 

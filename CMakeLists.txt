@@ -10,9 +10,11 @@ set(CMAKE_MODULE_PATH "/usr/share/SFML/cmake/Modules")
 find_package(SFML 2.4 COMPONENTS graphics window system audio REQUIRED)
 
 # list .cpp files
-set(SOURCES main.cpp EL.cpp LP.cpp Game.cpp SceneGame.cpp GameObject.cpp GameObjectManager.cpp MP.cpp IP.cpp Camera.cpp Particle.cpp 
-            ParticleManager.cpp TileMap.cpp ExampleObject.cpp Layer.cpp Player.cpp Map.cpp MapTitle.cpp SceneTitle.cpp Staircase.cpp
-            Bullet.cpp PlayerStats.cpp PlayerManager.cpp UIHP.cpp UIExp.cpp MapDungeon.cpp)
+set(SOURCES main.cpp EL.cpp LP.cpp Game.cpp GameObject.cpp GameObjectManager.cpp MP.cpp IP.cpp Camera.cpp Particle.cpp 
+            ParticleManager.cpp TileMap.cpp Layer.cpp Player.cpp Map.cpp MapTitle.cpp SceneTitle.cpp Staircase.cpp
+            Bullet.cpp PlayerStats.cpp PlayerManager.cpp UIHP.cpp UIExp.cpp MapDungeon.cpp Challenge.cpp ChallengeKills.cpp 
+            UIChallenge.cpp Enemy.cpp EnemyZombie.cpp SceneDungeon.cpp SceneFloor1.cpp EnemySlime.cpp EnemyShooter.cpp 
+            EnemyBullet.cpp GameOver.cpp)
 
 # add sub directories
 # add_subdirectory(FolderName)

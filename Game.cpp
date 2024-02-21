@@ -3,8 +3,8 @@
 #include "Game.h"
 #include "ID.h"
 #include "SceneNull.h"
-#include "SceneGame.h"
 #include "SceneTitle.h"
+#include "SceneFloor1.h"
 
 static SceneNull nullScene;
 
@@ -20,7 +20,7 @@ Game::Game(Camera& camera) : scene_{&nullScene}
     ps_.Reset();
     //Add scenes
     AddScene("Title", new SceneTitle(this));
-    AddScene("Game", new SceneGame(this));
+    AddScene("Floor1", new SceneFloor1(this));
     //Set starting scene
     scene_ = scenes_["Title"];
     scene_->Init();

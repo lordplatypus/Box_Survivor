@@ -48,9 +48,19 @@ void Staircase::ReactOnCollision(GameObject& other)
 {
     //If Object B collided with this Object (A), then B's info is sent to A
 
-    if (other.GetName() == "Player")
+    if (!GetLock() && other.GetName() == "Player")
     {
         //EX: if the collided object is "Staircase" then do this
         scene_->ChangeScene(sceneName_);
     }
+}
+
+void Staircase::SetLock(bool lock)
+{
+    lock_ = lock;
+}
+
+bool Staircase::GetLock() const
+{
+    return lock_;
 }

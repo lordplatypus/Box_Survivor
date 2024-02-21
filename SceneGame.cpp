@@ -3,10 +3,8 @@
 #include "ID.h"
 #include "ExampleObject.h"
 #include "Player.h"
-#include "UIHP.h"
-#include "UIExp.h"
 #include "Staircase.h"
-#include "MapNull.h"
+#include "ChallengeKills.h"
 
 SceneGame::SceneGame(Game* game) : game_{game}
 {}
@@ -20,21 +18,24 @@ void SceneGame::Init()
     sf::Vector2i player_pos = md_->GetPlayerSpawnPos();
     sf::Vector2i stair_pos = md_->GetObjectSpawnPos();
     
-    // MapNull* nullMap = new MapNull();
     Player* player = new Player(*this, game_->GetCamera(), *md_, game_->GetPlayerStats(), sf::Vector2f(player_pos.x, player_pos.y));
     UIHP* player_hp_ui = new UIHP(game_->GetPlayerStats().GetMaxHP(), game_->GetPlayerStats().GetHP(), sf::Vector2f(32, game_->GetCamera().GetView(view_UI).getSize().y - 64));
     UIExp* player_exp_ui = new UIExp(game_->GetPlayerStats().GetMaxExperience(), game_->GetPlayerStats().GetExperience(), sf::Vector2f(game_->GetCamera().GetView(view_UI).getSize().x - 320 - 32, game_->GetCamera().GetView(view_UI).getSize().y - 64));
-    playerManager_ = new PlayerManager(game_->GetPlayerStats(), *player, *player_hp_ui, *player_exp_ui);
+    playerManager_ = new PlayerManager(game_->GetPlayerStats(), *player, *this, game_->GetCamera(), game_->GetLP());
 
     AddGameObject(player);
-    AddGameObject(player_hp_ui);
-    AddGameObject(player_exp_ui);
-    AddGameObject(new Staircase(*this, sf::Vector2f(stair_pos.x, stair_pos.y), "Title"));
     for (int i = 0; i < 10; i++) 
     {
         sf::Vector2i enemy_pos = md_->GetObjectSpawnPos();
         AddGameObject(new ExampleObject(*this, *playerManager_, sf::Vector2f(enemy_pos.x, enemy_pos.y)));
+        enemy_count_++;
     }
+
+    Staircase* staircase = new Staircase(*this, sf::Vector2f(stair_pos.x, stair_pos.y), "Title");
+    AddGameObject(staircase);
+
+    AddGameObject(new ChallengeKills(*this, *playerManager_, *staircase));
+
     game_->GetCamera().SetViewCenter(view_main, sf::Vector2f(12*32, 12*32));
 }
 
@@ -78,4 +79,9 @@ void SceneGame::End()
 {
     gom_.Clear();
     delete(md_);
+}
+
+int SceneGame::GetEnemyCount() const
+{
+    return enemy_count_;
 }

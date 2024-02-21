@@ -39,23 +39,27 @@ void Player::InputHandle(float delta_time)
     sf::Vector2f moveTo = position_;
     if (IP_.GetButton(sf::Keyboard::W))
     {
-        float moveUp = position_.y - velocity_.y * delta_time;
-        if (map_->Transversable(sf::Vector2f(position_.x, moveUp))) moveTo.y = moveUp;
+        moveTo.y -= velocity_.y * delta_time;
+        // float moveUp = position_.y - velocity_.y * delta_time;
+        // if (map_->Transversable(sf::Vector2f(position_.x, moveUp))) moveTo.y = moveUp;
     }
     if (IP_.GetButton(sf::Keyboard::A))
     {
-        float moveLeft = position_.x - velocity_.x * delta_time;
-        if (map_->Transversable(sf::Vector2f(moveLeft, position_.y))) moveTo.x = moveLeft;
+        moveTo.x -= velocity_.x * delta_time;
+        // float moveLeft = position_.x - velocity_.x * delta_time;
+        // if (map_->Transversable(sf::Vector2f(moveLeft, position_.y))) moveTo.x = moveLeft;
     }
     if (IP_.GetButton(sf::Keyboard::S))
     {
-        float moveDown = position_.y + velocity_.y * delta_time;
-        if (map_->Transversable(sf::Vector2f(position_.x, moveDown + imageHeight_))) moveTo.y = moveDown;
+        moveTo.y += velocity_.y * delta_time;
+        // float moveDown = position_.y + velocity_.y * delta_time;
+        // if (map_->Transversable(sf::Vector2f(position_.x, moveDown + imageHeight_))) moveTo.y = moveDown;
     }
     if (IP_.GetButton(sf::Keyboard::D))
     {
-        float moveRight = position_.x + velocity_.x * delta_time;
-        if (map_->Transversable(sf::Vector2f(moveRight + imageWidth_, position_.y))) moveTo.x = moveRight;
+        moveTo.x += velocity_.x * delta_time;
+        // float moveRight = position_.x + velocity_.x * delta_time;
+        // if (map_->Transversable(sf::Vector2f(moveRight + imageWidth_, position_.y))) moveTo.x = moveRight;
     }
     if (IP_.GetButtonDown(sf::Mouse::Left))
     {
@@ -68,11 +72,17 @@ void Player::InputHandle(float delta_time)
         xy *= 32.0f; // move out 32 pixels, so the bullets don't interfer with the player hitbox
         sf::Vector2f startPos = sf::Vector2f((position_.x + imageWidth_ / 2) + xy.x, (position_.y + imageHeight_ / 2) + xy.y); // add xy to player pos
 
-        scene_->AddGameObject(new Bullet(*map_, "Player_Bullet", startPos, bulletVelocity, 1.0f));
+        scene_->AddGameObject(new Bullet(*map_, startPos, bulletVelocity, 1.0f));
     }
 
-    position_ = moveTo;
-    rect_.setPosition(position_);
+    // position_ = moveTo;
+    // rect_.setPosition(position_);
+    if (Transversable(moveTo))
+    {
+        position_ = moveTo;
+        rect_.setPosition(position_);
+    }
+
     camera_->SetViewCenter(view_main, sf::Vector2(position_.x + imageWidth_ / 2, position_.y + imageHeight_ / 2));
 
     IP_.Update();
@@ -96,8 +106,17 @@ void Player::ReactOnCollision(GameObject& other)
 {
     //If Object B collided with this Object (A), then B's info is sent to A
 
-    if (other.GetName() == "Player")
+    if (other.GetName() == "Enemy_Bullet")
     {
         //EX: if the collided object is "player" then do this
     }
+}
+
+bool Player::Transversable(const sf::Vector2f& position) const
+{
+    if (!map_->Transversable(position)) return false;
+    if (!map_->Transversable(sf::Vector2f(position.x, position.y + imageHeight_))) return false;
+    if (!map_->Transversable(sf::Vector2f(position.x + imageWidth_, position.y))) return false;
+    if (!map_->Transversable(sf::Vector2f(position.x + imageWidth_, position.y + imageHeight_))) return false;
+    return true;
 }

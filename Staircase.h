@@ -17,9 +17,14 @@ private:
     //Collision / Perception
     void ReactOnCollision(GameObject& other) override;
 
+public:
+    void SetLock(bool lock);
+    bool GetLock() const;
+
 private:
     sf::RectangleShape rect_;
     std::string sceneName_;
+    bool lock_{false};
 };
 
 #endif
