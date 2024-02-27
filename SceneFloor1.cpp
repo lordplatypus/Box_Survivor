@@ -14,5 +14,9 @@ void SceneFloor1::Init()
     {
         DungeonInit(5, 25, "Title");
     }
-    SetPause(false);
+    else
+    {
+        SetPause(false);
+        playerManager_->UpdateUI();
+    }
 }

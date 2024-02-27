@@ -21,7 +21,6 @@ void SceneDungeon::Draw(Camera& camera) const
 {
     md_->Draw(camera);
     gom_.Draw(camera); //Regular draw - Draw GameObjects in order based on position in the list
-    gom_.DelayedDraw(camera); //draw things after Regular draw is finished, helpful for UI or things that should always be drawn last
 }
 
 void SceneDungeon::AddGameObject(GameObject* gameObject)
@@ -38,6 +37,7 @@ void SceneDungeon::ChangeScene(const std::string& sceneName)
 {
     sceneName_ = sceneName;
     changeSceneFlag_ = true;
+    if (sceneName == "Upgrade") SetPause(true);
 }
 
 void SceneDungeon::End()

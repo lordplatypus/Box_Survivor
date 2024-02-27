@@ -2,7 +2,6 @@
 #define STAIRCASE_H_
 #include "GameObject.h"
 #include "LP.h"
-#include "IP.h"
 
 class Staircase : public GameObject
 {

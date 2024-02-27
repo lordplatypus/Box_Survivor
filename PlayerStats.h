@@ -19,11 +19,11 @@ public:
     void SetDamage(int damage);
     int GetDamage() const;
     void SetPlayerSpeed(float player_speed);
-    int GetPlayerSpeed() const;
+    float GetPlayerSpeed() const;
     void SetBulletRange(float bullet_range);
-    int GetBulletRange() const;
+    float GetBulletRange() const;
     void SetBulletSpeed(float bullet_speed);
-    int GetBulletSpeed() const;
+    float GetBulletSpeed() const;
     void SetFireRate(float fire_rate);
     int GetFireRate() const;
 
@@ -34,9 +34,9 @@ private:
     int hp_{3};
     int max_hp_{3};
     int damage_{1};
-    float player_speed_{1};
-    float bullet_range_{1};
-    float bullet_speed_{1};
+    float player_speed_{300.0f};
+    float bullet_range_{1.0f};
+    float bullet_speed_{500.0f};
     float fire_rate_{1};
 };
 

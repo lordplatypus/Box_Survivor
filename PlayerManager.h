@@ -15,6 +15,8 @@ public:
     PlayerStats* GetPlayerStats() const;
     Player* GetPlayer() const;
 
+    void UpdateUI();
+
     void DealDamage(int damage);
     void AddExperience(int experience);
     void SetChallengeText(const std::string challenge_text);

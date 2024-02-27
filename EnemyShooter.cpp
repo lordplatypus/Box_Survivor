@@ -4,7 +4,7 @@
 
 EnemyShooter::EnemyShooter(SceneDungeon& dungeonScene, Map& map, PlayerManager& playerManager, int id, const sf::Vector2f& position)
 {
-    Init(&dungeonScene, &map, &playerManager, "Shooter", id, sf::Vector2i(32, 32), position, 320, 3, 1, 250);
+    Init(&dungeonScene, &map, &playerManager, "Shooter", id, sf::Vector2i(32, 32), position, 320, 3, 1, 250, 2);
 
     rect_.setSize(sf::Vector2f(imageWidth_, imageHeight_));
     rect_.setFillColor(sf::Color(0, 255, 0, 255));
@@ -68,7 +68,6 @@ void EnemyShooter::ReactOnCollision(GameObject& other)
     }
     else if (other.GetName() == "Player_Bullet")
     {
-        playerManager_->AddExperience(1);
-        Kill();
+        TakeDamage();
     }
 }

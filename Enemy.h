@@ -8,11 +8,12 @@
 class Enemy : public GameObject
 {
 public:
-    virtual void Init(SceneDungeon* dungeonScene, Map* map, PlayerManager* playerManager, const std::string& name, int id, const sf::Vector2i& size, const sf::Vector2f& position, int perceptionRange, int maxHP, int attackPower, float speed);
+    virtual void Init(SceneDungeon* dungeonScene, Map* map, PlayerManager* playerManager, const std::string& name, int id, const sf::Vector2i& size, const sf::Vector2f& position, int perceptionRange, int maxHP, int attackPower, float speed, int exp);
     virtual bool SeePlayer() const;
     bool Transversable(const sf::Vector2f& position) const;
     sf::IntRect GetPerceptionArea() const;
     sf::Vector2f Normalize(const sf::Vector2f& vector);
+    void TakeDamage();
     virtual void Kill() override;
 
 protected:
@@ -25,6 +26,7 @@ protected:
     int HP_{0};
     int maxHP_{0};
     int attackPower_{0};
+    int exp_{0};
 };
 
 #endif

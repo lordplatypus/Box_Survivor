@@ -14,7 +14,8 @@ set(SOURCES main.cpp EL.cpp LP.cpp Game.cpp GameObject.cpp GameObjectManager.cpp
             ParticleManager.cpp TileMap.cpp Layer.cpp Player.cpp Map.cpp MapTitle.cpp SceneTitle.cpp Staircase.cpp
             Bullet.cpp PlayerStats.cpp PlayerManager.cpp UIHP.cpp UIExp.cpp MapDungeon.cpp Challenge.cpp ChallengeKills.cpp 
             UIChallenge.cpp Enemy.cpp EnemyZombie.cpp SceneDungeon.cpp SceneFloor1.cpp EnemySlime.cpp EnemyShooter.cpp 
-            EnemyBullet.cpp GameOver.cpp)
+            EnemyBullet.cpp GameOver.cpp Upgrade.cpp UpgradeManager.cpp UpgradeMaxHP.cpp SceneUpgrade.cpp UpgradeHealHP.cpp
+            UpgradeDamage.cpp UpgradeBulletRange.cpp UpgradeBulletSpeed.cpp UpgradeMovementSpeed.cpp)
 
 # add sub directories
 # add_subdirectory(FolderName)

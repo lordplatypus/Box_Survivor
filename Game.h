@@ -27,6 +27,7 @@ public:
     MP& GetMP();
     Camera& GetCamera();
     PlayerStats& GetPlayerStats();
+    const std::string& GetPreviousScene() const;
 
     //Called on program shutdown, delete scenes here
     void Clear();
@@ -44,6 +45,8 @@ private:
     MP MP_;
     Camera* camera_ {nullptr};
     PlayerStats ps_;
+    std::string currentScene_{""};
+    std::string previousScene_{""};
 };
 
 #endif

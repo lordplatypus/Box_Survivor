@@ -2,7 +2,7 @@
 
 EnemyZombie::EnemyZombie(SceneDungeon& dungeonScene, Map& map, PlayerManager& playerManager, int id, const sf::Vector2f& position)
 {
-    Init(&dungeonScene, &map, &playerManager, "Zombie", id, sf::Vector2i(32, 32), position, 320, 1, 1, 100);
+    Init(&dungeonScene, &map, &playerManager, "Zombie", id, sf::Vector2i(32, 32), position, 320, 2, 1, 100, 1);
 
     rect_.setSize(sf::Vector2f(imageWidth_, imageHeight_));
     rect_.setFillColor(sf::Color(255, 0, 0, 255));
@@ -45,7 +45,6 @@ void EnemyZombie::ReactOnCollision(GameObject& other)
     }
     else if (other.GetName() == "Player_Bullet")
     {
-        playerManager_->AddExperience(1);
-        Kill();
+        TakeDamage();;
     }
 }

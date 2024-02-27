@@ -3,7 +3,7 @@
 #include <cmath>
 
 void Enemy::Init(SceneDungeon* dungeonScene, Map* map, PlayerManager* playerManager, const std::string& name, int id, const sf::Vector2i& size, 
-                 const sf::Vector2f& position, int perceptionRange, int maxHP, int attackPower, float speed)
+                 const sf::Vector2f& position, int perceptionRange, int maxHP, int attackPower, float speed, int exp)
 {
     dungeonScene_ = dungeonScene;
     map_ = map;
@@ -20,6 +20,7 @@ void Enemy::Init(SceneDungeon* dungeonScene, Map* map, PlayerManager* playerMana
     HP_ = maxHP;
     attackPower_ = attackPower;
     velocity_ = sf::Vector2f(speed, speed);
+    exp_ = exp;
 }
 
 bool Enemy::SeePlayer() const
@@ -46,6 +47,16 @@ sf::Vector2f Enemy::Normalize(const sf::Vector2f& vector)
     float length = sqrt(pow(vector.x, 2) + pow(vector.y, 2));
     if (length != 0) return sf::Vector2f(vector.x / length, vector.y / length);
     return vector;
+}
+
+void Enemy::TakeDamage()
+{
+    HP_ -= playerManager_->GetPlayerStats()->GetDamage();
+    if (HP_ <= 0)
+    {
+        playerManager_->AddExperience(exp_);
+        Kill();
+    }
 }
 
 void Enemy::Kill()

@@ -15,13 +15,23 @@ SceneTitle::~SceneTitle()
 
 void SceneTitle::Init()
 {
+    game_->GetPlayerStats().Reset(); // Reset player stats for next run
+
     mt_ = new MapTitle(game_->GetLP());
 
     Player* player = new Player(*this, game_->GetCamera(), *mt_, game_->GetPlayerStats(), sf::Vector2f(45 / 2 * 32, 25 / 2 * 32));
 
     AddGameObject(player);
-    AddGameObject(new Staircase(*this, sf::Vector2f(45 / 2 * 32, 5 * 32), "Floor1"));
+    AddGameObject(new Staircase(*this, sf::Vector2f(45 / 2 * 32, 7 * 32), "Floor1"));
     game_->GetCamera().SetViewCenter(view_main, sf::Vector2f(0, 0));
+
+    // Text
+    titleText_ = game_->GetLP().SetText(main_font, "BOX SURVIVOR", sf::Vector2f(45 / 2 * 32 + 16, 3 * 32), 64);
+    game_->GetLP().SetTextOriginCenter(titleText_);
+    startText_ = game_->GetLP().SetText(main_font, "Start Game");
+    game_->GetLP().SetTextOriginCenter(startText_);
+    startText_.setPosition(sf::Vector2f(45 / 2 * 32 + 16, 6 * 32));
+    instructionText_ = game_->GetLP().SetText(main_font, "+Movement - 'WASD'\n+Aim - Mouse\n+Shoot - Left Click\n+Cyan square is staircase to next floor\n+Must complete challenge before staircase\n  is unlocked\n+Press 'ESC' to close the game", sf::Vector2f(64, 32 * 16));
 }
 
 void SceneTitle::Update(float delta_time)
@@ -39,8 +49,12 @@ void SceneTitle::Update(float delta_time)
 void SceneTitle::Draw(Camera& camera) const
 {
     mt_->Draw(camera);
+
+    camera.Draw(titleText_, layer_main);
+    camera.Draw(startText_, layer_main);
+    camera.Draw(instructionText_, layer_main);
+
     gom_.Draw(camera); //Regular draw - Draw GameObjects in order based on position in the list
-    gom_.DelayedDraw(camera); //draw things after Regular draw is finished, helpful for UI or things that should always be drawn last
 }
 
 void SceneTitle::AddGameObject(GameObject* gameObject)

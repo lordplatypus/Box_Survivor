@@ -1,18 +1,15 @@
-#ifndef SCENE_TITLE_H_
-#define SCENE_TITLE_H_
+#ifndef SCENE_UPGRADE_H_
+#define SCENE_UPGRADE_H_
 #include "Scene.h"
 #include "Game.h"
 #include "GameObjectManager.h"
-#include "ParticleManager.h"
-#include "MapTitle.h"
 #include "PlayerManager.h"
 
-
-class SceneTitle : public Scene
+class SceneUpgrade : public Scene
 {
 public:
-    SceneTitle(Game* game);
-    ~SceneTitle();
+    SceneUpgrade(Game* game);
+    ~SceneUpgrade();
     virtual void Init() override;
     virtual void Update(float delta_time) override;
     virtual void Draw(Camera& camera) const override;
@@ -24,15 +21,9 @@ public:
 private:
     Game* game_{nullptr};
     GameObjectManager gom_;
-    ParticleManager pm_;
-    MapTitle* mt_{nullptr};
     bool changeSceneFlag_{false};
     std::string sceneName_;
     PlayerManager* playerManager_{nullptr};
-    // Text
-    sf::Text titleText_;
-    sf::Text startText_;
-    sf::Text instructionText_;
 };
 
 #endif

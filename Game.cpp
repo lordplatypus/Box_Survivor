@@ -4,6 +4,7 @@
 #include "ID.h"
 #include "SceneNull.h"
 #include "SceneTitle.h"
+#include "SceneUpgrade.h"
 #include "SceneFloor1.h"
 
 static SceneNull nullScene;
@@ -20,9 +21,13 @@ Game::Game(Camera& camera) : scene_{&nullScene}
     ps_.Reset();
     //Add scenes
     AddScene("Title", new SceneTitle(this));
+    AddScene("Upgrade", new SceneUpgrade(this));
     AddScene("Floor1", new SceneFloor1(this));
+    //Set strings
+    currentScene_ = "Title";
+    previousScene_ = currentScene_;
     //Set starting scene
-    scene_ = scenes_["Title"];
+    scene_ = scenes_[currentScene_];
     scene_->Init();
 }
 
@@ -48,8 +53,10 @@ void Game::AddScene(const std::string& name, Scene* scene)
 
 void Game::ChangeScene(const std::string& newScene)
 {
+    previousScene_ = currentScene_;
+    currentScene_ = newScene;
     EndScene();
-    scene_ = scenes_[newScene];
+    scene_ = scenes_[currentScene_];
     scene_->Init();
 }
 
@@ -77,6 +84,11 @@ Camera& Game::GetCamera()
 PlayerStats& Game::GetPlayerStats()
 {
     return ps_;
+}
+
+const std::string& Game::GetPreviousScene() const
+{
+    return previousScene_;
 }
 
 void Game::Clear()

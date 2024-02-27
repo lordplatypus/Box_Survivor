@@ -12,7 +12,7 @@ Player::Player(Scene& scene, Camera& camera, Map& map, PlayerStats& ps, const sf
     name_ = "Player";
     tag_ = "Player";
     position_ = position;
-    velocity_ = sf::Vector2f(300.0f, 300.0f);
+    // velocity_ = sf::Vector2f(ps_->GetPlayerSpeed(), ps_->GetPlayerSpeed());
     layerID_ = layer_main;
     ID_ = 0;
     imageWidth_ = 32;
@@ -39,25 +39,25 @@ void Player::InputHandle(float delta_time)
     sf::Vector2f moveTo = position_;
     if (IP_.GetButton(sf::Keyboard::W))
     {
-        moveTo.y -= velocity_.y * delta_time;
+        moveTo.y -= ps_->GetPlayerSpeed() * delta_time;
         // float moveUp = position_.y - velocity_.y * delta_time;
         // if (map_->Transversable(sf::Vector2f(position_.x, moveUp))) moveTo.y = moveUp;
     }
     if (IP_.GetButton(sf::Keyboard::A))
     {
-        moveTo.x -= velocity_.x * delta_time;
+        moveTo.x -= ps_->GetPlayerSpeed() * delta_time;
         // float moveLeft = position_.x - velocity_.x * delta_time;
         // if (map_->Transversable(sf::Vector2f(moveLeft, position_.y))) moveTo.x = moveLeft;
     }
     if (IP_.GetButton(sf::Keyboard::S))
     {
-        moveTo.y += velocity_.y * delta_time;
+        moveTo.y += ps_->GetPlayerSpeed() * delta_time;
         // float moveDown = position_.y + velocity_.y * delta_time;
         // if (map_->Transversable(sf::Vector2f(position_.x, moveDown + imageHeight_))) moveTo.y = moveDown;
     }
     if (IP_.GetButton(sf::Keyboard::D))
     {
-        moveTo.x += velocity_.x * delta_time;
+        moveTo.x += ps_->GetPlayerSpeed() * delta_time;
         // float moveRight = position_.x + velocity_.x * delta_time;
         // if (map_->Transversable(sf::Vector2f(moveRight + imageWidth_, position_.y))) moveTo.x = moveRight;
     }
@@ -68,11 +68,11 @@ void Player::InputHandle(float delta_time)
 
         sf::Vector2f xy = sf::Vector2f(sin(angle), cos(angle)); // x and y of triangle at the above angle
         if (distance.y < 0) xy *= -1.0f; // reverse xy if mouse is above the middle of view (distance.y < 0)
-        sf::Vector2f bulletVelocity = xy * 500.0f; // set bullet velocity
+        sf::Vector2f bulletVelocity = xy * ps_->GetBulletSpeed(); // set bullet velocity
         xy *= 32.0f; // move out 32 pixels, so the bullets don't interfer with the player hitbox
         sf::Vector2f startPos = sf::Vector2f((position_.x + imageWidth_ / 2) + xy.x, (position_.y + imageHeight_ / 2) + xy.y); // add xy to player pos
 
-        scene_->AddGameObject(new Bullet(*map_, startPos, bulletVelocity, 1.0f));
+        scene_->AddGameObject(new Bullet(*map_, startPos, bulletVelocity, ps_->GetBulletRange()));
     }
 
     // position_ = moveTo;
