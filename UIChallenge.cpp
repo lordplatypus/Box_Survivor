@@ -11,6 +11,7 @@ UIChallenge::UIChallenge(LP& LP, const sf::Vector2f& position)
     ID_ = 0;
     imageWidth_ = sqrt(pow(32, 2) + pow(32, 2));
     imageHeight_ = imageWidth_;
+    SetActive(false);
 
     text_ = LP.SetText(main_font, "");
 }

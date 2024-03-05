@@ -22,7 +22,7 @@ void SceneTitle::Init()
     Player* player = new Player(*this, game_->GetCamera(), *mt_, game_->GetPlayerStats(), sf::Vector2f(45 / 2 * 32, 25 / 2 * 32));
 
     AddGameObject(player);
-    AddGameObject(new Staircase(*this, sf::Vector2f(45 / 2 * 32, 7 * 32), "Floor1"));
+    AddGameObject(new Staircase(*this, sf::Vector2f(45 / 2 * 32, 7 * 32), "Boss"));
     game_->GetCamera().SetViewCenter(view_main, sf::Vector2f(0, 0));
 
     // Text

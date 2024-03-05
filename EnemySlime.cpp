@@ -12,9 +12,6 @@ EnemySlime::EnemySlime(SceneDungeon& dungeonScene, Map& map, PlayerManager& play
     rect_.setPosition(position_);
 }
 
-EnemySlime::~EnemySlime()
-{}
-
 void EnemySlime::Update(float delta_time)
 {
     if (seePlayerFlag_)
@@ -26,6 +23,7 @@ void EnemySlime::Update(float delta_time)
         {
             position_ = moveTo;
             rect_.setPosition(position_);
+            hpBar_->SetPosition(sf::Vector2f(position_.x + imageWidth_ / 2, position_.y - imageHeight_ / 2));
         }    
     }
     else if (SeePlayer())
@@ -37,6 +35,7 @@ void EnemySlime::Update(float delta_time)
 void EnemySlime::Draw(Camera& camera) const
 {
     camera.Draw(rect_, layerID_);
+    hpBar_->Draw(camera);
 }
 
 void EnemySlime::ReactOnCollision(GameObject& other)

@@ -12,6 +12,7 @@ UIExp::UIExp(int max_experience, int current_experience, const sf::Vector2f& pos
     imageHeight_ = 32;
     max_experience_ = max_experience;
     current_experience_ = current_experience;
+    SetActive(false);
 
     outline_.setSize(sf::Vector2f(imageWidth_-8, imageHeight_-8));
     outline_.setFillColor(sf::Color::Transparent);

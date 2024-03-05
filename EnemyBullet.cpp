@@ -41,7 +41,7 @@ void EnemyBullet::ReactOnCollision(GameObject& other)
 {
     //If Object B collided with this Object (A), then B's info is sent to A
 
-    if (other.GetName() != "Staircase")
+    if (other.GetName() != "Staircase" && other.GetTag() != "Enemy")
     {
         if (other.GetName() == "Player") playerManager_->DealDamage(damage_);
         Kill();

@@ -1,7 +1,7 @@
 #include "GameOver.h"
 #include "ID.h"
 
-GameOver::GameOver(Scene& scene, LP& LP, const sf::Vector2f& position)
+GameOver::GameOver(Scene& scene, LP& LP, const sf::Vector2f& position, const std::string& text)
 {
     scene_ = &scene;
     name_ = "GameOver";
@@ -12,7 +12,7 @@ GameOver::GameOver(Scene& scene, LP& LP, const sf::Vector2f& position)
     imageWidth_ = 0;
     imageHeight_ = 0;
 
-    text_ = LP.SetText(main_font, "Game Over: Press Space to Return to the Title");
+    text_ = LP.SetText(main_font, text);
     LP.SetTextOriginCenter(text_);
     text_.setPosition(position_);
 }

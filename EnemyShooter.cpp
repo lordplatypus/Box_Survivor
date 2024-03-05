@@ -11,9 +11,6 @@ EnemyShooter::EnemyShooter(SceneDungeon& dungeonScene, Map& map, PlayerManager& 
     rect_.setPosition(position_);
 }
 
-EnemyShooter::~EnemyShooter()
-{}
-
 void EnemyShooter::Update(float delta_time)
 {
     if (seePlayerFlag_)
@@ -27,6 +24,7 @@ void EnemyShooter::Update(float delta_time)
         {
             position_ = moveTo;
             rect_.setPosition(position_);
+            hpBar_->SetPosition(sf::Vector2f(position_.x + imageWidth_ / 2, position_.y - imageHeight_ / 2));
         }
 
         shootTimer_ += delta_time;
@@ -47,6 +45,7 @@ void EnemyShooter::Update(float delta_time)
 void EnemyShooter::Draw(Camera& camera) const
 {
     camera.Draw(rect_, layerID_);
+    hpBar_->Draw(camera);
 }
 
 void EnemyShooter::MovementHandle(float delta_time)

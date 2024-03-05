@@ -22,6 +22,10 @@ public:
     {
         return ceil(a);
     }
+    static float RadToDeg(float rad)
+    {
+        return rad * (180 / PI());
+    }
 };
 
 #endif

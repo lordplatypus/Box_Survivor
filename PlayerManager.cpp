@@ -39,7 +39,7 @@ void PlayerManager::DealDamage(int damage)
     if (new_hp <= 0) 
     {// if hp is <= 0 then kill player
         player_->Kill();
-        scene_->AddGameObject(new GameOver(*scene_, *LP_, camera_->GetView(view_UI).getCenter()));
+        scene_->AddGameObject(new GameOver(*scene_, *LP_, camera_->GetView(view_UI).getCenter(), "Game Over: Press Space to Return to the Title"));
     }
     ps_->SetHP(new_hp); // set new hp
     // update player hp ui here

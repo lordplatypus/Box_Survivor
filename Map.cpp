@@ -53,5 +53,6 @@ const bool Map::Transversable(const sf::Vector2f& position) const
 
 const int Map::GetTile(const sf::Vector2i& tilePosition) const
 {
+    if (tilePosition.x < 0 || tilePosition.y < 0 || tilePosition.x >= mapSize_.x || tilePosition.y >= mapSize_.y) return -1;
     return map_[tilePosition.x][tilePosition.y];
 }

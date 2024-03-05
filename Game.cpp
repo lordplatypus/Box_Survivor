@@ -2,10 +2,12 @@
 #include <string>
 #include "Game.h"
 #include "ID.h"
+// Scenes
 #include "SceneNull.h"
 #include "SceneTitle.h"
 #include "SceneUpgrade.h"
 #include "SceneFloor1.h"
+#include "SceneBoss.h"
 
 static SceneNull nullScene;
 
@@ -23,6 +25,7 @@ Game::Game(Camera& camera) : scene_{&nullScene}
     AddScene("Title", new SceneTitle(this));
     AddScene("Upgrade", new SceneUpgrade(this));
     AddScene("Floor1", new SceneFloor1(this));
+    AddScene("Boss", new SceneBoss(this));
     //Set strings
     currentScene_ = "Title";
     previousScene_ = currentScene_;

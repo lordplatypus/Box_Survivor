@@ -2,6 +2,11 @@
 #include "ID.h"
 #include <cmath>
 
+Enemy::~Enemy()
+{
+    delete(hpBar_);
+}
+
 void Enemy::Init(SceneDungeon* dungeonScene, Map* map, PlayerManager* playerManager, const std::string& name, int id, const sf::Vector2i& size, 
                  const sf::Vector2f& position, int perceptionRange, int maxHP, int attackPower, float speed, int exp)
 {
@@ -21,6 +26,8 @@ void Enemy::Init(SceneDungeon* dungeonScene, Map* map, PlayerManager* playerMana
     attackPower_ = attackPower;
     velocity_ = sf::Vector2f(speed, speed);
     exp_ = exp;
+
+    hpBar_ = new HPBar(sf::Vector2f(position_.x + imageWidth_ / 2, position_.y - imageHeight_ / 2), sf::Vector2i(imageWidth_, imageHeight_ / 4), 1.0f);
 }
 
 bool Enemy::SeePlayer() const
@@ -52,6 +59,7 @@ sf::Vector2f Enemy::Normalize(const sf::Vector2f& vector)
 void Enemy::TakeDamage()
 {
     HP_ -= playerManager_->GetPlayerStats()->GetDamage();
+    hpBar_->SetPercentage((float)HP_ / (float)maxHP_);
     if (HP_ <= 0)
     {
         playerManager_->AddExperience(exp_);

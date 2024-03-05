@@ -9,9 +9,6 @@ EnemyZombie::EnemyZombie(SceneDungeon& dungeonScene, Map& map, PlayerManager& pl
     rect_.setPosition(position_);
 }
 
-EnemyZombie::~EnemyZombie()
-{}
-
 void EnemyZombie::Update(float delta_time)
 {
     if (seePlayerFlag_)
@@ -23,6 +20,7 @@ void EnemyZombie::Update(float delta_time)
         {
             position_ = moveTo;
             rect_.setPosition(position_);
+            hpBar_->SetPosition(sf::Vector2f(position_.x + imageWidth_ / 2, position_.y - imageHeight_ / 2));
         }    
     }
     else if (SeePlayer())
@@ -34,6 +32,7 @@ void EnemyZombie::Update(float delta_time)
 void EnemyZombie::Draw(Camera& camera) const
 {
     camera.Draw(rect_, layerID_);
+    hpBar_->Draw(camera);
 }
 
 void EnemyZombie::ReactOnCollision(GameObject& other)
@@ -45,6 +44,6 @@ void EnemyZombie::ReactOnCollision(GameObject& other)
     }
     else if (other.GetName() == "Player_Bullet")
     {
-        TakeDamage();;
+        TakeDamage();
     }
 }

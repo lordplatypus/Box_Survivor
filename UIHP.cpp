@@ -13,6 +13,7 @@ UIHP::UIHP(int max_hp, int current_hp, const sf::Vector2f& position)
     imageHeight_ = imageWidth_;
     max_hp_ = max_hp;
     current_hp_ = current_hp;
+    SetActive(false);
 
     diamond_.setSize(sf::Vector2f(32, 32));
     diamond_.setOrigin(sf::Vector2f(32 / 2, 32 / 2));
