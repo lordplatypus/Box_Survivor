@@ -1,5 +1,11 @@
 # Box Survivor
 
+A simple 2D, 8 bit style, roguelike, twin-stick shooter made with SFML and c++.
+
+###### Prerequisites
+- cmake 3.18 or higher
+- SFML 2.4 or higher
+
 ###### Build Instructions
 - Clone this repository
 ```
@@ -24,6 +30,10 @@ cmake -DCMAKE_BUILD_TYPE=Debug ..
 - Make
 ```
 make
+```
+- Move the "Resources" folder from the source files to the build folder
+```
+mv ../Resources ./
 ```
 - Run the Game
 ```

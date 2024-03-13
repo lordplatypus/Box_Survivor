@@ -222,17 +222,17 @@ void MapDungeon::BuildMap()
                     SetBlankRoom(room_to_world, sf::Vector2i(24, 24));
                     break;
                 case 1:
-                    SetRoomFromCSV("./Room1.csv", room_to_world, sf::Vector2i(24, 24));
+                    SetRoomFromCSV("./Resources/Room1.csv", room_to_world, sf::Vector2i(24, 24));
                     room_coords_.push_back(sf::Vector2i(x, y));
                     break;
                 case 2:
-                    SetRoomFromCSV("./Room2.csv", room_to_world, sf::Vector2i(24, 24));
+                    SetRoomFromCSV("./Resources/Room2.csv", room_to_world, sf::Vector2i(24, 24));
                     room_coords_.push_back(sf::Vector2i(x, y));
                     break;
                 case 3:
                     if (x+1 < room_map_[0].size() && placed_rooms[y][x] == 0) 
                     {
-                        SetRoomFromCSV("./Room3.csv", room_to_world, sf::Vector2i(24*2, 24));
+                        SetRoomFromCSV("./Resources/Room3.csv", room_to_world, sf::Vector2i(24*2, 24));
                         placed_rooms[y][x+1] = 1;
                         room_coords_.push_back(sf::Vector2i(x, y));
                         room_coords_.push_back(sf::Vector2i(x+1, y));
@@ -241,7 +241,7 @@ void MapDungeon::BuildMap()
                 case 4:
                     if (x+1 < room_map_[0].size() && placed_rooms[y][x] == 0) 
                     {
-                        SetRoomFromCSV("./Room4.csv", room_to_world, sf::Vector2i(24*2, 24));
+                        SetRoomFromCSV("./Resources/Room4.csv", room_to_world, sf::Vector2i(24*2, 24));
                         placed_rooms[y][x+1] = 1;
                         room_coords_.push_back(sf::Vector2i(x+1, y));
                     }
@@ -249,7 +249,7 @@ void MapDungeon::BuildMap()
                 case 5:
                     if (y+1 < room_map_.size() && placed_rooms[y][x] == 0) 
                     {
-                        SetRoomFromCSV("./Room5.csv", room_to_world, sf::Vector2i(24, 24*2));
+                        SetRoomFromCSV("./Resources/Room5.csv", room_to_world, sf::Vector2i(24, 24*2));
                         placed_rooms[y+1][x] = 1;
                         room_coords_.push_back(sf::Vector2i(x, y));
                         room_coords_.push_back(sf::Vector2i(x, y+1));
@@ -258,7 +258,7 @@ void MapDungeon::BuildMap()
                 case 6:
                     if (y+1 < room_map_.size() && placed_rooms[y][x] == 0) 
                     {
-                        SetRoomFromCSV("./Room6.csv", room_to_world, sf::Vector2i(24, 24*2));
+                        SetRoomFromCSV("./Resources/Room6.csv", room_to_world, sf::Vector2i(24, 24*2));
                         placed_rooms[y+1][x] = 1;
                         room_coords_.push_back(sf::Vector2i(x, y));
                         room_coords_.push_back(sf::Vector2i(x, y+1));
