@@ -25,7 +25,9 @@ public:
     void SetBulletSpeed(float bullet_speed);
     float GetBulletSpeed() const;
     void SetFireRate(float fire_rate);
-    int GetFireRate() const;
+    float GetFireRate() const;
+    void SetInvincibilityTime(float invincibility_time);
+    float GetInvincibilityTime() const;
 
 private:
     int experience_{0};
@@ -37,7 +39,8 @@ private:
     float player_speed_{300.0f};
     float bullet_range_{1.0f};
     float bullet_speed_{500.0f};
-    float fire_rate_{1};
+    float fire_rate_{0.5f};
+    float invincibility_time_{0.3};
 };
 
 #endif

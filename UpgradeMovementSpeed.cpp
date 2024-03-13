@@ -2,7 +2,7 @@
 
 UpgradeMovementSpeed::UpgradeMovementSpeed(LP& lp, PlayerStats& playerStats, const sf::Vector2f& worldPosition)
 {
-    Init(lp, playerStats, worldPosition, "Increases the\nPlayers Speed\n by 50");
+    Init(lp, playerStats, worldPosition, "Increases the\nPlayers Speed\nby 50");
 }
 
 UpgradeMovementSpeed::~UpgradeMovementSpeed()

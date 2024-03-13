@@ -12,7 +12,7 @@ void SceneFloor1::Init()
 {
     if (!GetPause())
     {
-        DungeonInit(5, 25, "Title");
+        DungeonInit(5, 25, "Floor2");
     }
     else
     {

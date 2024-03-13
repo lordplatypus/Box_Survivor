@@ -3,8 +3,8 @@
 EnemySlime::EnemySlime(SceneDungeon& dungeonScene, Map& map, PlayerManager& playerManager, int id, const sf::Vector2f& position, const sf::Vector2f& size)
 {
     int maxHP = 3;
-    if (size.x < 32) maxHP = 2;
-    else if (size.x < 26) maxHP = 3;
+    if (size.x <= 16) maxHP = 1;
+    else if (size.x < 32) maxHP = 2;
     Init(&dungeonScene, &map, &playerManager, "Slime", id, sf::Vector2i(size.x, size.y), position, 320, maxHP, 1, 32.0f / size.x * 100, 1);
 
     rect_.setSize(sf::Vector2f(imageWidth_, imageHeight_));
@@ -45,7 +45,7 @@ void EnemySlime::ReactOnCollision(GameObject& other)
         playerManager_->DealDamage(attackPower_);
         Kill();
     }
-    else if (other.GetName() == "Player_Bullet")
+    else if (other.GetName() == "Player_Bullet" && !other.IsDead())
     {
         TakeDamage();
     }

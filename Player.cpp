@@ -36,6 +36,8 @@ void Player::Update(float delta_time)
 
 void Player::InputHandle(float delta_time)
 {
+    if (shootTimer_ <= ps_->GetFireRate()) shootTimer_ += delta_time;
+    if (invincibilityTimer_ >= 0.0f) invincibilityTimer_ -= delta_time;
     sf::Vector2f moveTo = position_;
     if (IP_.GetButton(sf::Keyboard::W))
     {
@@ -61,7 +63,7 @@ void Player::InputHandle(float delta_time)
         // float moveRight = position_.x + velocity_.x * delta_time;
         // if (map_->Transversable(sf::Vector2f(moveRight + imageWidth_, position_.y))) moveTo.x = moveRight;
     }
-    if (IP_.GetButtonDown(sf::Mouse::Left))
+    if (IP_.GetButton(sf::Mouse::Left) && shootTimer_ >= ps_->GetFireRate())
     {
         sf::Vector2f distance = IP_.GetMousePosition(*camera_) - camera_->GetView(view_main).getSize() / 2.0f; // mouse position is local pos not world coords
         float angle = atan(distance.x / distance.y); // get angle from center of the view to mouse pos
@@ -73,10 +75,9 @@ void Player::InputHandle(float delta_time)
         sf::Vector2f startPos = sf::Vector2f((position_.x + imageWidth_ / 2) + xy.x, (position_.y + imageHeight_ / 2) + xy.y); // add xy to player pos
 
         scene_->AddGameObject(new Bullet(*map_, startPos, bulletVelocity, ps_->GetBulletRange()));
+        shootTimer_ = 0.0f;
     }
 
-    // position_ = moveTo;
-    // rect_.setPosition(position_);
     if (Transversable(moveTo))
     {
         position_ = moveTo;
@@ -90,16 +91,19 @@ void Player::InputHandle(float delta_time)
 
 void Player::Draw(Camera& camera) const
 {
-    //Draw sprite to layer
-    //camera.Draw(sprite_, layer_main);
+    if (!CanTakeDamage() && (int)(invincibilityTimer_ * 100.0f) % 2 == 1) return;
     camera.Draw(rect_, layer_main);
 }
 
-void Player::DelayedDraw(Camera& camera) const
+void Player::TakeDamage()
 {
-    //same as Draw
-    //this function will be called after Draw
-    //Good for things that need to be drawn last - UI
+    invincibilityTimer_ = ps_->GetInvincibilityTime();
+}
+
+bool Player::CanTakeDamage() const
+{
+    if (invincibilityTimer_ > 0.0f) return false;
+    return true;
 }
 
 void Player::ReactOnCollision(GameObject& other)

@@ -65,7 +65,7 @@ void EnemyShooter::ReactOnCollision(GameObject& other)
         playerManager_->DealDamage(1);
         Kill();
     }
-    else if (other.GetName() == "Player_Bullet")
+    else if (other.GetName() == "Player_Bullet" && !other.IsDead())
     {
         TakeDamage();
     }

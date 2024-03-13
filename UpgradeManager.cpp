@@ -6,6 +6,8 @@
 #include "UpgradeBulletRange.h"
 #include "UpgradeBulletSpeed.h"
 #include "UpgradeDamage.h"
+#include "UpgradeFireRate.h"
+#include "UpgradeInvincibilityTime.h"
 
 UpgradeManager::UpgradeManager(Scene& scene, const std::string& previousScene, LP& lp, PlayerStats& playerStats)
 {
@@ -64,7 +66,7 @@ void UpgradeManager::Draw(Camera& camera) const
 
 void UpgradeManager::PickUpgrades()
 {
-    int upgradeNum = 6;
+    int upgradeNum = 8;
     std::vector<int> upgradeIDs;
     std::vector<int> IDs;
     for (int i = 0; i < upgradeNum; i++) IDs.push_back(i);
@@ -103,6 +105,14 @@ void UpgradeManager::PickUpgrades()
             case 5:
                 upgrades_.push_back(new UpgradeDamage(*lp_, *playerStats_, upgradePos));
                 break;
+
+            case 6:
+                upgrades_.push_back(new UpgradeFireRate(*lp_, *playerStats_, upgradePos));
+                break;
+
+            case 7:
+                upgrades_.push_back(new UpgradeInvincibilityTime(*lp_, *playerStats_, upgradePos));
+                break;   
         }
     }
 

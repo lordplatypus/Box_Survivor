@@ -1,6 +1,13 @@
 #include "SceneDungeon.h"
 #include "Staircase.h"
+// Challenges
 #include "ChallengeKills.h"
+#include "ChallengeGhost.h"
+#include "EnemyGhost.h"
+#include "ChallengeKeys.h"
+#include "Key.h"
+#include "ChallengeBomb.h"
+// Enemies
 #include "EnemyZombie.h"
 #include "EnemySlime.h"
 #include "EnemyShooter.h"
@@ -93,13 +100,33 @@ void SceneDungeon::SetRandomChallenge(const std::string& nextSceneName)
     Staircase* staircase = new Staircase(*this, sf::Vector2f(stair_pos.x, stair_pos.y), nextSceneName);
     AddGameObject(staircase);
 
-    // int challenge_id = std::rand() / ((RAND_MAX + 1u) / NUMBER OF CHALLENGES);
-    int challenge_id = 0;
-    switch (challenge_id)
+    // int challenge_id = std::rand() / ((RAND_MAX + 1u) / 4);
+    int challenge_id = 3;
+    if (challenge_id == 1)
     {
-        default:
-            AddGameObject(new ChallengeKills(*this, *playerManager_, *staircase, GetEnemyCount(), 1 + std::rand() / ((RAND_MAX + 1u) / GetEnemyCount())));
-            break;
+        int keyNum = 1 + std::rand() / ((RAND_MAX + 1u) / 10); // 1 to 10 keys
+        ChallengeKeys* challenge = new ChallengeKeys(*playerManager_, *staircase, keyNum);
+        AddGameObject(challenge);
+        for (int i = 0; i < keyNum; i++)
+        {
+            sf::Vector2i keyPos = md_->GetObjectSpawnPos();
+            AddGameObject(new Key(*challenge, sf::Vector2f(keyPos.x, keyPos.y), i));
+        }
+    }
+    else if (challenge_id == 2)
+    {
+        sf::Vector2i ghostPos = md_->GetObjectSpawnPos();
+        EnemyGhost* ghost = new EnemyGhost(*playerManager_, 0, sf::Vector2f(ghostPos.x, ghostPos.y));
+        AddGameObject(ghost);
+        AddGameObject(new ChallengeGhost(*playerManager_, *staircase, *ghost, 60.0f));
+    }
+    else if (challenge_id == 3)
+    {
+        AddGameObject(new ChallengeBomb(*this, *playerManager_, *staircase, 60.0f));
+    }
+    else
+    {
+        AddGameObject(new ChallengeKills(*this, *playerManager_, *staircase, GetEnemyCount(), 1 + std::rand() / ((RAND_MAX + 1u) / GetEnemyCount())));
     }
 }
 

@@ -35,7 +35,9 @@ void PlayerManager::UpdateUI()
 
 void PlayerManager::DealDamage(int damage)
 {
+    if (!player_->CanTakeDamage()) return; // if player is invincibile, return
     int new_hp = ps_->GetHP() - damage; // get current hp
+    player_->TakeDamage();
     if (new_hp <= 0) 
     {// if hp is <= 0 then kill player
         player_->Kill();

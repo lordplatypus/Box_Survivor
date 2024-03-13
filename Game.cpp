@@ -7,6 +7,8 @@
 #include "SceneTitle.h"
 #include "SceneUpgrade.h"
 #include "SceneFloor1.h"
+#include "SceneFloor2.h"
+#include "SceneFloor3.h"
 #include "SceneBoss.h"
 
 static SceneNull nullScene;
@@ -25,6 +27,8 @@ Game::Game(Camera& camera) : scene_{&nullScene}
     AddScene("Title", new SceneTitle(this));
     AddScene("Upgrade", new SceneUpgrade(this));
     AddScene("Floor1", new SceneFloor1(this));
+    AddScene("Floor2", new SceneFloor2(this));
+    AddScene("Floor3", new SceneFloor3(this));
     AddScene("Boss", new SceneBoss(this));
     //Set strings
     currentScene_ = "Title";

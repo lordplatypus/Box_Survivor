@@ -58,6 +58,7 @@ sf::Vector2f Enemy::Normalize(const sf::Vector2f& vector)
 
 void Enemy::TakeDamage()
 {
+    seePlayerFlag_ = true;
     HP_ -= playerManager_->GetPlayerStats()->GetDamage();
     hpBar_->SetPercentage((float)HP_ / (float)maxHP_);
     if (HP_ <= 0)

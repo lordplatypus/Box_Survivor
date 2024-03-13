@@ -11,6 +11,8 @@ void PlayerStats::Reset()
     bullet_range_ = 1.0f;
     bullet_speed_ = 500.0f;
     player_speed_ = 300.0f;
+    fire_rate_ = 0.5f;
+    invincibility_time_ = 0.3f;
 }
 
 void PlayerStats::SetExperience(int experience) {experience_ = experience;}
@@ -32,4 +34,6 @@ float PlayerStats::GetBulletRange() const {return bullet_range_;}
 void PlayerStats::SetBulletSpeed(float bullet_speed) {bullet_speed_ = bullet_speed;}
 float PlayerStats::GetBulletSpeed() const {return bullet_speed_;}
 void PlayerStats::SetFireRate(float fire_rate) {fire_rate_ = fire_rate;}
-int PlayerStats::GetFireRate() const {return fire_rate_;}
+float PlayerStats::GetFireRate() const {return fire_rate_;}
+void PlayerStats::SetInvincibilityTime(float invincibility_time) {invincibility_time_ = invincibility_time;}
+float PlayerStats::GetInvincibilityTime() const {return invincibility_time_;}
