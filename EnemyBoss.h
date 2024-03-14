@@ -31,7 +31,7 @@ private:
     bool enrage_{false};
 
     // Attacks
-    float nextAttack_{8.0f};
+    float nextAttack_{4.0f};
     float attackTimer_{0.0f};
     // shooting
     float currentRads_{1.0f};

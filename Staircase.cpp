@@ -6,7 +6,7 @@ Staircase::Staircase(Scene& scene, const sf::Vector2f& position, const std::stri
     scene_ = &scene;
     sceneName_ = sceneName;
     name_ = "Staircase";
-    tag_ = "Staircase";
+    tag_ = "Object";
     position_ = position;
     layerID_ = layer_main;
     ID_ = 0;

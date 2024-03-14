@@ -26,6 +26,10 @@ public:
     {
         return rad * (180 / PI());
     }
+    static float DegToRad(float deg)
+    {
+        return deg * (PI() / 180);
+    }
 };
 
 #endif

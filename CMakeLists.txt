@@ -17,7 +17,8 @@ set(SOURCES main.cpp EL.cpp LP.cpp Game.cpp GameObject.cpp GameObjectManager.cpp
             EnemyBullet.cpp GameOver.cpp Upgrade.cpp UpgradeManager.cpp UpgradeMaxHP.cpp SceneUpgrade.cpp UpgradeHealHP.cpp
             UpgradeDamage.cpp UpgradeBulletRange.cpp UpgradeBulletSpeed.cpp UpgradeMovementSpeed.cpp MapBoss.cpp SceneBoss.cpp
             EnemyBoss.cpp EnemyBomb.cpp EnemyLaser.cpp HPBar.cpp EnemyDash.cpp ChallengeKeys.cpp Key.cpp ChallengeGhost.cpp 
-            EnemyGhost.cpp UpgradeInvincibilityTime.cpp UpgradeFireRate.cpp SceneFloor2.cpp SceneFloor3.cpp ChallengeBomb.cpp)
+            EnemyGhost.cpp UpgradeInvincibilityTime.cpp UpgradeFireRate.cpp SceneFloor2.cpp SceneFloor3.cpp ChallengeBomb.cpp
+            EnemyNinja.cpp)
 
 # add sub directories
 # add_subdirectory(FolderName)

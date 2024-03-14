@@ -55,7 +55,7 @@ void PlayerManager::AddExperience(int experience)
     { // if exp is enough for a level up
         ps_->SetLevel(ps_->GetLevel() + 1); // Level + 1
         total_experience -= ps_->GetMaxExperience(); // Roll over exp
-        ps_->SetMaxExperience(ps_->GetMaxExperience() * 2); // increase needed exp for level up
+        ps_->SetMaxExperience(ps_->GetMaxExperience() * 1.5f); // increase needed exp for level up
         scene_->ChangeScene("Upgrade"); // change to the upgrade scene
     }
     ps_->SetExperience(total_experience); // set new exp

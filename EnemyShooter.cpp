@@ -31,7 +31,7 @@ void EnemyShooter::Update(float delta_time)
         if (shootTimer_ >= shootTime_)
         {
             shootTimer_ = 0.0f;
-            sf::Vector2f startPos = sf::Vector2f(position_.x + imageWidth_/2 + normal.x * imageWidth_, position_.y + imageHeight_/2 + normal.y * imageHeight_);
+            sf::Vector2f startPos = sf::Vector2f(position_.x + (imageWidth_/2), position_.y + (imageHeight_/2));
             sf::Vector2f bulletVelocity = normal * 400.0f;
             dungeonScene_->AddGameObject(new EnemyBullet(*playerManager_, *map_, startPos, bulletVelocity, 1.0f, sf::Color::Green, attackPower_));
         }
@@ -46,16 +46,6 @@ void EnemyShooter::Draw(Camera& camera) const
 {
     camera.Draw(rect_, layerID_);
     hpBar_->Draw(camera);
-}
-
-void EnemyShooter::MovementHandle(float delta_time)
-{
-    
-}
-
-void EnemyShooter::ShootingHandle(float delta_time)
-{
-    
 }
 
 void EnemyShooter::ReactOnCollision(GameObject& other)

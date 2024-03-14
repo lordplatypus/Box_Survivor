@@ -11,6 +11,7 @@
 #include "EnemyZombie.h"
 #include "EnemySlime.h"
 #include "EnemyShooter.h"
+#include "EnemyNinja.h"
 
 void SceneDungeon::Update(float delta_time)
 {
@@ -74,7 +75,7 @@ void SceneDungeon::RandomEnemyPlacement(int enemyNum)
     for (int i = 0; i < enemyNum; i++)
     {
         sf::Vector2i enemy_pos = md_->GetObjectSpawnPos();
-        int randEnemyID = std::rand() / ((RAND_MAX + 1u) / 3);
+        int randEnemyID = std::rand() / ((RAND_MAX + 1u) / 4);
         switch (randEnemyID)
         {
             default:
@@ -89,6 +90,10 @@ void SceneDungeon::RandomEnemyPlacement(int enemyNum)
             case 2:
                 AddGameObject(new EnemyShooter(*this, *md_, *playerManager_, enemyCount_, sf::Vector2f(enemy_pos.x, enemy_pos.y)));
                 break;
+
+            case 3:
+                AddGameObject(new EnemyNinja(*this, *md_, *playerManager_, enemyCount_, sf::Vector2f(enemy_pos.x, enemy_pos.y)));
+                break;
         }
         enemyCount_++;
     }
@@ -100,8 +105,7 @@ void SceneDungeon::SetRandomChallenge(const std::string& nextSceneName)
     Staircase* staircase = new Staircase(*this, sf::Vector2f(stair_pos.x, stair_pos.y), nextSceneName);
     AddGameObject(staircase);
 
-    // int challenge_id = std::rand() / ((RAND_MAX + 1u) / 4);
-    int challenge_id = 3;
+    int challenge_id = std::rand() / ((RAND_MAX + 1u) / 4);
     if (challenge_id == 1)
     {
         int keyNum = 1 + std::rand() / ((RAND_MAX + 1u) / 10); // 1 to 10 keys

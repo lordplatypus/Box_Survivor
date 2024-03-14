@@ -5,7 +5,7 @@ Key::Key(ChallengeKeys& challenge, const sf::Vector2f& position, const int id)
 {
     challenge_ = &challenge;
     name_ = "Key";
-    tag_ = "Key";
+    tag_ = "Object";
     position_ = position;
     layerID_ = layer_main;
     ID_ = id;

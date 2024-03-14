@@ -27,7 +27,7 @@ EnemyBoss::EnemyBoss(Scene& scene, Map& map, PlayerManager& playerManager, Camer
     position_ = position;
     perceptionRange_ = 320;
     maxHP_ = 500;
-    HP_ = 251;
+    HP_ = 500;
     attackPower_ = 1;
     velocity_ = sf::Vector2f(1000, 1000);
 

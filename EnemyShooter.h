@@ -10,8 +10,6 @@ public:
     void Draw(Camera& camera) const override;
 
 private:
-    void MovementHandle(float delta_time);
-    void ShootingHandle(float delta_time);
     void ReactOnCollision(GameObject& other) override;
 
 private:
