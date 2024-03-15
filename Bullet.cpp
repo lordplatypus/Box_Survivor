@@ -37,10 +37,8 @@ void Bullet::Draw(Camera& camera) const
 
 void Bullet::ReactOnCollision(GameObject& other)
 {
-    //If Object B collided with this Object (A), then B's info is sent to A
-
     if (other.GetName() != "Player" && other.GetTag() != "Object" && other.GetName() != "Ghost" && other.GetName() != "Bullet")
-    {
+    { // ignore player, objects, the ghost enemy, and other bullets
         Kill();
     }
 }

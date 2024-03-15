@@ -119,7 +119,7 @@ float EnemyBoss::AngleToPlayer()
 void EnemyBoss::Shoot(float delta_time)
 {
     shootTimer_ += delta_time;
-    if (shootTimer_ < 0.2f) return;
+    if (shootTimer_ < 0.4f) return;
 
     shootTimer_ = 0.0f;
     sf::Vector2f playerPosition = playerManager_->GetPlayer()->GetPosition();

@@ -130,7 +130,9 @@ void SceneDungeon::SetRandomChallenge(const std::string& nextSceneName)
     }
     else
     {
-        AddGameObject(new ChallengeKills(*this, *playerManager_, *staircase, GetEnemyCount(), 1 + std::rand() / ((RAND_MAX + 1u) / GetEnemyCount())));
+        int enemyCount = GetEnemyCount();
+        if (enemyCount > 100) enemyCount = 100;
+        AddGameObject(new ChallengeKills(*this, *playerManager_, *staircase, GetEnemyCount(), 1 + std::rand() / ((RAND_MAX + 1u) / enemyCount)));
     }
 }
 

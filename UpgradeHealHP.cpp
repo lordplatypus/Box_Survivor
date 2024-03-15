@@ -3,7 +3,7 @@
 UpgradeHealHP::UpgradeHealHP(LP& lp, PlayerStats& playerStats, const sf::Vector2f& worldPosition)
 {
     // healAmount_ = 1 + std::rand() / ((RAND_MAX + 1u) / 3);
-    healAmount_ = 1;
+    healAmount_ = 3;
     Init(lp, playerStats, worldPosition, "Heals the\nPlayer by " + std::to_string(healAmount_));
 }
 
